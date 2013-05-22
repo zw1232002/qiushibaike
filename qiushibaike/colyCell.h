@@ -22,11 +22,14 @@
 //作者头像
 @property (nonatomic, retain) UIImageView *AuthorImg;
 
+//头部图像
+@property (nonatomic, retain) UIImageView *headPhoto;
+
 //标签图像
 @property (nonatomic, retain) UIImageView *TagPhoto;
 
 //背景图像
-@property (nonatomic, retain) UIImageView *backgroundImg;
+@property (nonatomic, retain) UIImageView *backgroundImgView;
 
 //底部花边
 @property (nonatomic, retain) UIImageView *footView;

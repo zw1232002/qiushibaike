@@ -34,9 +34,15 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    //清除默认样式
+    self.view.backgroundColor = [UIColor clearColor];
+    
     self.list = [[NSArray alloc] initWithObjects:@"One", @"Two" , @"Three", nil];
     
     self.table = [[UITableView alloc] initWithFrame:self.view.bounds];
+    
+    //清除默认样式
+    self.table.backgroundColor = [UIColor clearColor];
     
     self.table.delegate = self;
     self.table.dataSource = self;
@@ -49,6 +55,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma tableView delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -65,6 +73,10 @@
     if (cell == nil)
     {
         cell = [[colyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        //清除默认样式
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.contentView.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor clearColor];
     }
     
     NSUInteger row = [indexPath row];
@@ -72,5 +84,11 @@
     
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*) indexPath
+{
+    return 320.00;
+}
+
 
 @end
