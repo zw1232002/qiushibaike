@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class MainViewController;
+
 @interface colyAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (retain, nonatomic) MainViewController *viewController;
 
 @end
