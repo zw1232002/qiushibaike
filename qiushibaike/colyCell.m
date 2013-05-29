@@ -20,7 +20,7 @@
         //单元格背景图
         UIImage *centerImage = [UIImage imageNamed:@"block_center_background.png"];
         backgroundImgView = [[UIImageView alloc] initWithImage:centerImage];
-        [backgroundImgView setFrame:CGRectMake(0, 0, 320, 320)];
+        [backgroundImgView setFrame:CGRectMake(0, 0, 320, 220)];
         [self.contentView addSubview:backgroundImgView];
         
         //糗事内容
@@ -31,6 +31,10 @@
         self.textContent.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:self.textContent];
         
+        //糗事内容的frame
+        CGSize textContentBounds = self.textContent.bounds.size;
+        
+        
         //头部图像
         self.headPhoto = [[UIImageView alloc] initWithFrame:CGRectMake(15, 5, 24, 24)];
         [self.headPhoto setImage:[UIImage imageNamed:@"thumb_avatar.png"]];
@@ -38,7 +42,7 @@
         [self.contentView addSubview:self.headPhoto];
         
         //糗事作者
-        self.textAuthor = [[UILabel alloc] initWithFrame:CGRectMake(45, 2, 200, 30)];
+        self.textAuthor = [[UILabel alloc] initWithFrame:CGRectMake(45, 5, 200, 30)];
         self.textAuthor.text = @"匿名";
         self.textAuthor.font = [UIFont fontWithName:@"Arial" size:14];
         self.textAuthor.textColor = [UIColor brownColor];
@@ -46,7 +50,7 @@
         [self.contentView addSubview:self.textAuthor];
         
         //糗事tag
-        self.textTag = [[UILabel alloc] initWithFrame:CGRectMake(45, 198, 200, 30)];
+        self.textTag = [[UILabel alloc] initWithFrame:CGRectMake(43, textContentBounds.height - 53, 200, 30)];
         self.textTag.text = @"摄影";
         self.textTag.font = [UIFont fontWithName:@"Arial" size:14];
         self.textTag.textColor = [UIColor brownColor];
@@ -54,14 +58,26 @@
         [self.contentView addSubview:self.textTag];
         
         //tag图片
-        self.TagPhoto = [[UIImageView alloc] initWithFrame:CGRectMake(15, 200, 24, 24)];
+        self.TagPhoto = [[UIImageView alloc] initWithFrame:CGRectMake(15, textContentBounds.height - 50, 24, 24)];
         self.TagPhoto.image = [UIImage imageNamed:@"icon_tag.png"];
         [self.contentView addSubview:self.TagPhoto];
         
         //底部图片
-        self.footView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.textContent.bounds.size.height, 320, 15)];
+        self.footView = [[UIImageView alloc] initWithFrame:CGRectMake(0, textContentBounds.height, 320, 15)];
         self.footView.image = [UIImage imageNamed:@"block_foot_background.png"];
         [self.contentView addSubview:self.footView];
+        
+        //顶按钮
+        self.UpButton = [[UIButton alloc] initWithFrame:CGRectMake(10, textContentBounds.height - 25, 70, 32)];
+        //设置背景
+        [self.UpButton setBackgroundImage:[UIImage imageNamed:@"button_vote.png"] forState:UIControlStateNormal];
+        [self.UpButton setBackgroundImage:[UIImage imageNamed:@"button_vote_active.png"] forState:UIControlStateHighlighted];
+        //设置图片
+        [self.UpButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 25)];
+        [self.UpButton setImage:[UIImage imageNamed:@"icon_for_good.png"] forState:UIControlStateNormal];
+        [self.UpButton setTitle:@"UP" forState:UIControlStateNormal];
+        [self.UpButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.contentView addSubview:self.UpButton];
     }
     return self;
 }
