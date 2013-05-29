@@ -10,4 +10,7 @@
 
 @interface ContentViewController : UIViewController
 
+//获取糗事列表
+- (void)getResult;
+
 @end

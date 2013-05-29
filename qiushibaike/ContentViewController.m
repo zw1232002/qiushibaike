@@ -48,12 +48,21 @@
     self.table.dataSource = self;
     
     [self.view addSubview:self.table];
+        
+    [self getResult];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)getResult
+{
+    
+    
 }
 
 #pragma tableView delegate methods

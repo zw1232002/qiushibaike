@@ -75,9 +75,36 @@
         //设置图片
         [self.UpButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 25)];
         [self.UpButton setImage:[UIImage imageNamed:@"icon_for_good.png"] forState:UIControlStateNormal];
-        [self.UpButton setTitle:@"UP" forState:UIControlStateNormal];
+        [self.UpButton setTitle:@"0" forState:UIControlStateNormal];
+        [self.UpButton.titleLabel setFont:[UIFont fontWithName:@"Arial" size:13]];
         [self.UpButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.contentView addSubview:self.UpButton];
+        
+        //踩按钮
+        self.downButton = [[UIButton alloc] initWithFrame:CGRectMake(125, textContentBounds.height - 25, 70, 32)];
+        //设置背景
+        [self.downButton setBackgroundImage:[UIImage imageNamed:@"button_vote.png"] forState:UIControlStateNormal];
+        [self.downButton setBackgroundImage:[UIImage imageNamed:@"button_vote_active.png"] forState:UIControlStateHighlighted];
+        //设置图片
+        [self.downButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 25)];
+        [self.downButton setImage:[UIImage imageNamed:@"icon_for_bad.png"] forState:UIControlStateNormal];
+        [self.downButton setTitle:@"0" forState:UIControlStateNormal];
+        [self.downButton.titleLabel setFont:[UIFont fontWithName:@"Arial" size:13]];
+        [self.downButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.contentView addSubview:self.downButton];
+        
+        //评论按钮
+        self.commentButton = [[UIButton alloc] initWithFrame:CGRectMake(textContentBounds.width - 40, textContentBounds.height - 25, 70, 32)];
+        //设置背景
+        [self.commentButton setBackgroundImage:[UIImage imageNamed:@"button_vote.png"] forState:UIControlStateNormal];
+        [self.commentButton setBackgroundImage:[UIImage imageNamed:@"button_vote_active.png"] forState:UIControlStateHighlighted];
+        //设置图片
+        [self.commentButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 25)];
+        [self.commentButton setImage:[UIImage imageNamed:@"icon_for_comment.png"] forState:UIControlStateNormal];
+        [self.commentButton setTitle:@"0" forState:UIControlStateNormal];
+        [self.commentButton.titleLabel setFont:[UIFont fontWithName:@"Arial" size:13]];
+        [self.commentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.contentView addSubview:self.commentButton];
     }
     return self;
 }
