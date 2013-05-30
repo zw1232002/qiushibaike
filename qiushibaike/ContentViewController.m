@@ -8,11 +8,11 @@
 
 #import "ContentViewController.h"
 #import "colyCell.h"
+#import "AFJSONRequestOperation.h"
 
 @interface ContentViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (retain, nonatomic) UITableView *table;
-@property (retain, nonatomic) NSArray *list;
 
 @end
 
@@ -34,10 +34,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self getResult];
+    
     //清除默认样式
     self.view.backgroundColor = [UIColor clearColor];
-    
-    self.list = [[NSArray alloc] initWithObjects:@"One", @"Two" , @"Three", nil];
     
     self.table = [[UITableView alloc] initWithFrame:self.view.bounds];
     
@@ -49,7 +50,11 @@
     
     [self.view addSubview:self.table];
         
-    [self getResult];
+    
+    
+    NSLog(@"%@", self.list);
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,7 +66,26 @@
 
 - (void)getResult
 {
+   
+    NSURL *url = [NSURL URLWithString:LastestURLString(100, 1)];
     
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSURLResponse *response, id JSON)
+    {
+        self.list = JSON;
+
+    } failure:^(NSURLRequest *request, NSURLResponse *response, NSError *error, id jj)
+    {
+        NSLog(@"\nThe http request error:%@",error);
+    }];
+    
+    [operation start];
+    
+     
     
 }
 
@@ -69,6 +93,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+   
     return [self.list count];
 }
 
@@ -89,7 +114,7 @@
     }
     
     NSUInteger row = [indexPath row];
-    cell.textContent.text = [list objectAtIndex:row];
+//    cell.textContent.text = [list o
     
     return cell;
 }
