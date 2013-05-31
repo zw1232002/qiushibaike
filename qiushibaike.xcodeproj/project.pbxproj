@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CE812A78174CA54D0069137D /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE812A76174CA54D0069137D /* ContentViewController.m */; };
 		CE812A79174CA54D0069137D /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE812A77174CA54D0069137D /* ContentViewController.xib */; };
+		CEDDF6CD17589E3A001F03DD /* QiushiObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDDF6CC17589E3A001F03DD /* QiushiObject.m */; };
 		CEF464B61757291200F16C98 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF464A41757291200F16C98 /* AFHTTPClient.m */; };
 		CEF464B71757291200F16C98 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF464A61757291200F16C98 /* AFHTTPRequestOperation.m */; };
 		CEF464B81757291200F16C98 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF464A81757291200F16C98 /* AFImageRequestOperation.m */; };
@@ -81,6 +82,8 @@
 		CE812A75174CA54D0069137D /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
 		CE812A76174CA54D0069137D /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
 		CE812A77174CA54D0069137D /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
+		CEDDF6CB17589E3A001F03DD /* QiushiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiushiObject.h; sourceTree = "<group>"; };
+		CEDDF6CC17589E3A001F03DD /* QiushiObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiushiObject.m; sourceTree = "<group>"; };
 		CEF464A31757291200F16C98 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		CEF464A41757291200F16C98 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		CEF464A51757291200F16C98 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -259,6 +262,8 @@
 				CE812A75174CA54D0069137D /* ContentViewController.h */,
 				CE812A76174CA54D0069137D /* ContentViewController.m */,
 				CE812A77174CA54D0069137D /* ContentViewController.xib */,
+				CEDDF6CB17589E3A001F03DD /* QiushiObject.h */,
+				CEDDF6CC17589E3A001F03DD /* QiushiObject.m */,
 			);
 			path = qiushibaike;
 			sourceTree = "<group>";
@@ -453,6 +458,7 @@
 				CEF464BC1757291200F16C98 /* AFURLConnectionOperation.m in Sources */,
 				CEF464BD1757291200F16C98 /* AFXMLRequestOperation.m in Sources */,
 				CEF464BE1757291200F16C98 /* UIImageView+AFNetworking.m in Sources */,
+				CEDDF6CD17589E3A001F03DD /* QiushiObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

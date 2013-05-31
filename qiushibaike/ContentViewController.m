@@ -49,11 +49,6 @@
     self.table.dataSource = self;
     
     [self.view addSubview:self.table];
-        
-    
-    
-    NSLog(@"%@", self.list);
-    
     
 }
 
@@ -76,7 +71,8 @@
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSURLResponse *response, id JSON)
     {
-        self.list = JSON;
+        [self setData:[JSON valueForKey:@"items"]];
+        [self.table reloadData];
 
     } failure:^(NSURLRequest *request, NSURLResponse *response, NSError *error, id jj)
     {
@@ -85,8 +81,13 @@
     
     [operation start];
     
-     
     
+}
+
+
+- (void)setData:(NSArray *)jsonData
+{
+    self.list = [[NSMutableArray alloc] initWithArray:jsonData];
 }
 
 #pragma tableView delegate methods

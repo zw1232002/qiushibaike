@@ -10,7 +10,7 @@
 
 @interface ContentViewController : UIViewController
 
-@property (retain, nonatomic) NSDictionary *list;
+@property (retain, nonatomic) NSMutableArray *list;
 
 //获取糗事列表
 - (void)getResult;
