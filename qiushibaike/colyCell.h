@@ -10,6 +10,12 @@
 
 @interface colyCell : UITableViewCell
 
+//限制糗事内容单元格大小的size属性
+@property(nonatomic,assign) CGSize maxSize;
+
+//通用的字体和大小
+@property(nonatomic,assign) UIFont *font;
+
 //糗事标签
 @property (nonatomic, retain) UILabel *textTag;
 
@@ -43,5 +49,11 @@
 //评论按钮
 @property (nonatomic, retain) UIButton *commentButton;
 
+
+//根据实际的内容，重新设置内容标签的高度
+- (void)resizeHeight;
+
+//当内容改变时，根据内容的高度设置其他关联元素的位置
+- (void)setOtherElements:(CGSize)textContentBounds;
 
 @end

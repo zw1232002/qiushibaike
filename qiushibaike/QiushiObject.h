@@ -14,7 +14,7 @@
 @property(copy, nonatomic) NSString *imageUrl;
 
 //大图片地址
-@property(copy, nonatomic) NSString *biyImageUrl;
+@property(copy, nonatomic) NSString *bigImageUrl;
 
 //标签
 @property(copy, nonatomic) NSString *tag;
@@ -29,14 +29,15 @@
 @property(copy, nonatomic) NSString *content;
 
 //顶的数量
-@property(assign, nonatomic) int *upCount;
+@property(assign, nonatomic) int upCount;
 
 //踩的数量
-@property(assign, nonatomic) int *downCount;
+@property(assign, nonatomic) int downCount;
 
 //评论数量
-@property(assign, nonatomic) int *commnetsCount;
+@property(assign, nonatomic) int commnetsCount;
 
-- (void)initWithDictionary:(NSDictionary *)dictionary;
+//初始化实体类的属性和对应关系
+- (QiushiObject *)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
