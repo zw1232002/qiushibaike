@@ -8,13 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface colyCell : UITableViewCell
-
-//限制糗事内容单元格大小的size属性
-@property(nonatomic,assign) CGSize maxSize;
-
-//通用的字体和大小
-@property(nonatomic,assign) UIFont *font;
 
 //糗事标签
 @property (nonatomic, retain) UILabel *textTag;
@@ -55,5 +50,18 @@
 
 //当内容改变时，根据内容的高度设置其他关联元素的位置
 - (void)setOtherElements:(CGSize)textContentBounds;
+
+//根据内容获取单元格的尺寸
++ (CGSize)getLabelSizeFromContent:(NSString *)content;
+
+//返回cell的高度
++ (CGFloat)getCellHeight:(NSString *)content;
+
+//限制糗事内容单元格大小的size属性
++ (UIFont *)DefaultFont;
+
+//通用的字体和大小
++(CGSize)ContentMaxSize;
+
 
 @end

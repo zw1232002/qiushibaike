@@ -24,3 +24,4 @@
 #define WeakURlString(count,page) [NSString stringWithFormat:@"http://m2.qiushibaike.com/article/list/week?count=%d&page=%d",count,page]
 #define MonthURLString(count,page) [NSString stringWithFormat:@"http://m2.qiushibaike.com/article/list/month?count=%d&page=%d",count,page]
 #define CommentsURLString(ID) [NSString stringWithFormat:@"http://m2.qiushibaike.com/article/%@/comments?count=500&page=1",ID]
+

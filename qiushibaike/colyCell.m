@@ -9,17 +9,13 @@
 #import "colyCell.h"
 
 @implementation colyCell
-@synthesize textTag,textAuthor,textContent,AuthorImg,headPhoto,TagPhoto,backgroundImgView,UpButton,downButton,footView,commentButton,maxSize,font;
+@synthesize textTag,textAuthor,textContent,AuthorImg,headPhoto,TagPhoto,backgroundImgView,UpButton,downButton,footView,commentButton;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
     // Initialization code
-    
-    self.maxSize = CGSizeMake(280, 220);
-    
-    self.font = [UIFont fontWithName:@"Arial" size:14];
     
     //单元格背景图
     UIImage *centerImage = [UIImage imageNamed:@"block_center_background.png"];
@@ -36,7 +32,7 @@
     //糗事作者
     self.textAuthor = [[UILabel alloc] initWithFrame:CGRectMake(45, 5, 200, 30)];
     self.textAuthor.text = @"匿名";
-    self.textAuthor.font = self.font;
+    self.textAuthor.font = [colyCell DefaultFont];
     self.textAuthor.textColor = [UIColor brownColor];
     self.textAuthor.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:self.textAuthor];
@@ -45,7 +41,7 @@
     //糗事内容
     self.textContent = [[UILabel alloc] init];
     [self.textContent setFrame:CGRectMake(20, 28, 280, 220)];
-    [self.textContent setFont:self.font];
+    [self.textContent setFont:[colyCell DefaultFont]];
     [self.textContent setNumberOfLines:0];
     [self.textContent setLineBreakMode:NSLineBreakByTruncatingTail];
     self.textContent.backgroundColor = [UIColor clearColor];
@@ -55,7 +51,7 @@
     //糗事tag
     self.textTag = [[UILabel alloc] init];
     self.textTag.text = @"摄影";
-    self.textTag.font = self.font;
+    self.textTag.font = [colyCell DefaultFont];
     self.textTag.textColor = [UIColor brownColor];
     self.textTag.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:self.textTag];
@@ -126,9 +122,9 @@
 - (void)resizeHeight
 {
   
-  CGSize size = [self.textContent.text sizeWithFont:self.font constrainedToSize:self.maxSize lineBreakMode:NSLineBreakByTruncatingTail];
+  CGSize size = [colyCell getLabelSizeFromContent:self.textContent.text];
   
-  [self.textContent setFrame:CGRectMake(20, 40, self.maxSize.width, size.height)];
+  [self.textContent setFrame:CGRectMake(20, 40, [colyCell ContentMaxSize].width, size.height)];
   
   [self setOtherElements:self.textContent.frame.size];
   
@@ -151,6 +147,26 @@
   [self.footView setFrame:CGRectMake(0, textContentBounds.height+90, 320, 15)];
 }
 
+
++ (CGSize)getLabelSizeFromContent:(NSString *)content
+{
+  return [content sizeWithFont:[colyCell DefaultFont] constrainedToSize:[colyCell ContentMaxSize] lineBreakMode:NSLineBreakByTruncatingTail];
+}
+
++ (CGFloat)getCellHeight:(NSString *)content
+{
+  return [colyCell getLabelSizeFromContent:content].height+110;
+}
+
++ (UIFont *)DefaultFont
+{
+  return [UIFont fontWithName:@"Arial" size:14];
+}
+
++(CGSize)ContentMaxSize
+{
+  return CGSizeMake(280, 220);
+}
 
 
 @end

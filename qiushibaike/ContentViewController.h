@@ -19,7 +19,4 @@
 //获取糗事列表
 - (void)getResult;
 
-//根据内容，动态获取高度
-- (CGFloat)getTheHeight:(NSInteger)row;
-
 @end

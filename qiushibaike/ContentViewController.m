@@ -160,31 +160,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*) indexPath
 {
-  return [self getTheHeight:[indexPath row]];
-//  return [[self.cellHeightArray objectAtIndex:[indexPath row]] floatValue];
+  QiushiObject *qiushi = [self.list objectAtIndex:[indexPath row]];
+  return [colyCell getCellHeight:qiushi.content];
+  //  return [[self.cellHeightArray objectAtIndex:[indexPath row]] floatValue];
 }
 
 
-- (CGFloat)getTheHeight:(NSInteger)row
-{
-  CGFloat contentWidth = 280;
-  //设置字体
-  UIFont *font = [UIFont fontWithName:@"arial" size:14];
-  
-  QiushiObject *qiushi = [self.list objectAtIndex:row];
-  
-  //内容
-  NSString *content = qiushi.content;
-  
-  //计算尺寸
-  CGSize size = [content sizeWithFont:font constrainedToSize:CGSizeMake(contentWidth, 220) lineBreakMode:NSLineBreakByTruncatingTail];
-  
-//  CGFloat height = qiushi.imageUrl == nil ? size.height+140 : size.height+220;
-  
-  CGFloat height = size.height+110;
-  
-  return height;
-}
 
 
 @end
