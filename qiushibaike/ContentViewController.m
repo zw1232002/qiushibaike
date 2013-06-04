@@ -10,6 +10,9 @@
 #import "colyCell.h"
 #import "AFJSONRequestOperation.h"
 #import "QiushiObject.h"
+#import "UIImageView+AFNetworking.h"
+#import "UIScrollView+SVPullToRefresh.h"
+#import "UIScrollView+SVInfiniteScrolling.h"
 
 @interface ContentViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -20,7 +23,8 @@
 @implementation ContentViewController
 
 @synthesize table;
-@synthesize list,cellHeightArray;
+@synthesize list;
+@synthesize loading;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,10 +43,6 @@
   //初始化列表和高度数组
   self.list = [NSMutableArray new];
   
-  self.cellHeightArray = [NSMutableArray new];
-  
-  [self getResult];
-  
   //清除默认样式
   self.view.backgroundColor = [UIColor clearColor];
   
@@ -56,6 +56,20 @@
   
   [self.view addSubview:self.table];
   
+  __block ContentViewController *selfVari = self;
+  
+  [self.table addPullToRefreshWithActionHandler:^{
+    [selfVari performSelector:@selector(getResult) withObject:nil afterDelay:1.f];
+  }];
+  
+  [self.table addInfiniteScrollingWithActionHandler:^{
+    [selfVari performSelector:@selector(getResult) withObject:nil afterDelay:1.0f];
+  }];
+  
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [self.table triggerPullToRefresh];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,10 +82,9 @@
 - (void)getResult
 {
    
-  NSURL *url = [NSURL URLWithString:DayURLString(100, 1)];
+  NSURL *url = [NSURL URLWithString:DayURLString(5, 1)];
   
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
-  
   
   [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
   
@@ -85,6 +98,7 @@
 //    NSLog(@"%@", JSON);
     
     [self.table reloadData];
+    [self.table.pullToRefreshView stopAnimating];
 
   } failure:^(NSURLRequest *request, NSURLResponse *response, NSError *error, id jj)
   {
@@ -150,11 +164,10 @@
   
   cell.textTag.text = qiushi.tag;
   
+  [cell.AuthorImg setImageWithURL:[NSURL URLWithString:qiushi.imageUrl] placeholderImage:[UIImage imageNamed:@"thumb_avatar.png"]];
+  
   [cell resizeHeight];
-  
-  [self.cellHeightArray insertObject:[NSString stringWithFormat:@"%f", cell.frame.size.height] atIndex:row];
 
-  
   return cell;
 }
 
@@ -162,10 +175,20 @@
 {
   QiushiObject *qiushi = [self.list objectAtIndex:[indexPath row]];
   return [colyCell getCellHeight:qiushi.content];
-  //  return [[self.cellHeightArray objectAtIndex:[indexPath row]] floatValue];
 }
 
+#pragma mark pullingRefreshTableViewDelegate
 
+//- (void)pullingTableViewDidStartRefreshing:(PullingRefreshTableView *)tableView
+//{
+// 
+//  [self performSelector:@selector(getResult) withObject:nil afterDelay:1.f];
+//}
+//
+//- (void)pullingTableViewDidStartLoading:(PullingRefreshTableView *)tableView
+//{
+//  [self performSelector:@selector(getResult) withObject:nil afterDelay:1.f];
+//}
 
 
 @end

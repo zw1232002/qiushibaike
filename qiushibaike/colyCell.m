@@ -8,6 +8,8 @@
 
 #import "colyCell.h"
 
+
+
 @implementation colyCell
 @synthesize textTag,textAuthor,textContent,AuthorImg,headPhoto,TagPhoto,backgroundImgView,UpButton,downButton,footView,commentButton;
 
@@ -23,11 +25,11 @@
     [self.contentView addSubview:backgroundImgView];
   
     
-    //头部图像
-    self.headPhoto = [[UIImageView alloc] initWithFrame:CGRectMake(15, 5, 24, 24)];
-    [self.headPhoto setImage:[UIImage imageNamed:@"thumb_avatar.png"]];
-    self.headPhoto.backgroundColor = [UIColor clearColor];
-    [self.contentView addSubview:self.headPhoto];
+    //作者图像
+    self.AuthorImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 5, 24, 24)];
+//    [self.AuthorImg setImage:[UIImage imageNamed:@"thumb_avatar.png"]];
+    self.AuthorImg.backgroundColor = [UIColor clearColor];
+    [self.contentView addSubview:self.AuthorImg];
     
     //糗事作者
     self.textAuthor = [[UILabel alloc] initWithFrame:CGRectMake(45, 5, 200, 30)];

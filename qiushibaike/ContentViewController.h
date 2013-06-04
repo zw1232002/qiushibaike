@@ -13,8 +13,7 @@
 //糗事列表
 @property (retain, nonatomic) NSMutableArray *list;
 
-//存储所有cell高度的数组
-@property (retain, nonatomic) NSMutableArray *cellHeightArray;
+@property (nonatomic,assign) BOOL loading;
 
 //获取糗事列表
 - (void)getResult;

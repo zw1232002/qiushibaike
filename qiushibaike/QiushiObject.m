@@ -14,7 +14,9 @@
 //初始化实体类的属性和对应关系
 - (QiushiObject *)initWithDictionary:(NSDictionary *)dictionary
 {
-  self.imageUrl = [dictionary objectForKey:@"image"];
+//  self.imageUrl = [dictionary objectForKey:@"image"];
+  
+  self.imageUrl = @"http://i.imgur.com/r4uwx.jpg";
   
   self.id = [dictionary objectForKey:@"id"];
   

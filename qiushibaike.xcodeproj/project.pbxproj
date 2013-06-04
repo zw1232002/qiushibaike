@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE787262175DDF9700A438A9 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = CE78725F175DDF9700A438A9 /* UIScrollView+SVInfiniteScrolling.m */; };
+		CE787263175DDF9700A438A9 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = CE787261175DDF9700A438A9 /* UIScrollView+SVPullToRefresh.m */; };
 		CE812A78174CA54D0069137D /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE812A76174CA54D0069137D /* ContentViewController.m */; };
 		CE812A79174CA54D0069137D /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE812A77174CA54D0069137D /* ContentViewController.xib */; };
+		CEC8C1D9175DC2D500036B8B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC8C1D8175DC2D500036B8B /* QuartzCore.framework */; };
 		CEDDF6CD17589E3A001F03DD /* QiushiObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDDF6CC17589E3A001F03DD /* QiushiObject.m */; };
 		CEF464B61757291200F16C98 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF464A41757291200F16C98 /* AFHTTPClient.m */; };
 		CEF464B71757291200F16C98 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF464A61757291200F16C98 /* AFHTTPRequestOperation.m */; };
@@ -79,9 +82,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE78725D175DDF9700A438A9 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		CE78725E175DDF9700A438A9 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		CE78725F175DDF9700A438A9 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		CE787260175DDF9700A438A9 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		CE787261175DDF9700A438A9 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		CE812A75174CA54D0069137D /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
 		CE812A76174CA54D0069137D /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
 		CE812A77174CA54D0069137D /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
+		CEC8C1D8175DC2D500036B8B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CEDDF6CB17589E3A001F03DD /* QiushiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiushiObject.h; sourceTree = "<group>"; };
 		CEDDF6CC17589E3A001F03DD /* QiushiObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiushiObject.m; sourceTree = "<group>"; };
 		CEF464A31757291200F16C98 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -173,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC8C1D9175DC2D500036B8B /* QuartzCore.framework in Frameworks */,
 				CEFDA323174C9B8300D2C5CA /* UIKit.framework in Frameworks */,
 				CEFDA325174C9B8300D2C5CA /* Foundation.framework in Frameworks */,
 				CEFDA327174C9B8300D2C5CA /* CoreGraphics.framework in Frameworks */,
@@ -185,9 +195,22 @@
 		CE10F6351755FB5E002E9890 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				CE78725C175DDF9700A438A9 /* SVPullToRefresh */,
 				CEF464A21757291200F16C98 /* AFNetworking */,
 			);
 			name = lib;
+			sourceTree = "<group>";
+		};
+		CE78725C175DDF9700A438A9 /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				CE78725D175DDF9700A438A9 /* SVPullToRefresh.h */,
+				CE78725E175DDF9700A438A9 /* UIScrollView+SVInfiniteScrolling.h */,
+				CE78725F175DDF9700A438A9 /* UIScrollView+SVInfiniteScrolling.m */,
+				CE787260175DDF9700A438A9 /* UIScrollView+SVPullToRefresh.h */,
+				CE787261175DDF9700A438A9 /* UIScrollView+SVPullToRefresh.m */,
+			);
+			path = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
 		CEF464A21757291200F16C98 /* AFNetworking */ = {
@@ -239,6 +262,7 @@
 		CEFDA321174C9B8300D2C5CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEC8C1D8175DC2D500036B8B /* QuartzCore.framework */,
 				CEFDA322174C9B8300D2C5CA /* UIKit.framework */,
 				CEFDA324174C9B8300D2C5CA /* Foundation.framework */,
 				CEFDA326174C9B8300D2C5CA /* CoreGraphics.framework */,
@@ -459,6 +483,8 @@
 				CEF464BD1757291200F16C98 /* AFXMLRequestOperation.m in Sources */,
 				CEF464BE1757291200F16C98 /* UIImageView+AFNetworking.m in Sources */,
 				CEDDF6CD17589E3A001F03DD /* QiushiObject.m in Sources */,
+				CE787262175DDF9700A438A9 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
+				CE787263175DDF9700A438A9 /* UIScrollView+SVPullToRefresh.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
