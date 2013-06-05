@@ -40,6 +40,8 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
   
+  self.view.frame = CGRectMake(0, 44, kDeviceWidth , kDeviceHeight - 44*2-10);
+  
   //初始化列表和高度数组
   self.list = [NSMutableArray new];
   
@@ -68,7 +70,8 @@
   
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
   [self.table triggerPullToRefresh];
 }
 
@@ -176,19 +179,5 @@
   QiushiObject *qiushi = [self.list objectAtIndex:[indexPath row]];
   return [colyCell getCellHeight:qiushi.content];
 }
-
-#pragma mark pullingRefreshTableViewDelegate
-
-//- (void)pullingTableViewDidStartRefreshing:(PullingRefreshTableView *)tableView
-//{
-// 
-//  [self performSelector:@selector(getResult) withObject:nil afterDelay:1.f];
-//}
-//
-//- (void)pullingTableViewDidStartLoading:(PullingRefreshTableView *)tableView
-//{
-//  [self performSelector:@selector(getResult) withObject:nil afterDelay:1.f];
-//}
-
 
 @end

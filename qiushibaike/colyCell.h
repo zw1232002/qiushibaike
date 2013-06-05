@@ -57,11 +57,5 @@
 //返回cell的高度
 + (CGFloat)getCellHeight:(NSString *)content;
 
-//限制糗事内容单元格大小的size属性
-+ (UIFont *)DefaultFont;
-
-//通用的字体和大小
-+(CGSize)ContentMaxSize;
-
 
 @end

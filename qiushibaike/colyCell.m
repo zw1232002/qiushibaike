@@ -8,7 +8,8 @@
 
 #import "colyCell.h"
 
-
+#define defaultFont [UIFont fontWithName:@"Arial" size:14]
+#define maxSize CGSizeMake(280, 220)
 
 @implementation colyCell
 @synthesize textTag,textAuthor,textContent,AuthorImg,headPhoto,TagPhoto,backgroundImgView,UpButton,downButton,footView,commentButton;
@@ -27,14 +28,13 @@
     
     //作者图像
     self.AuthorImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 5, 24, 24)];
-//    [self.AuthorImg setImage:[UIImage imageNamed:@"thumb_avatar.png"]];
     self.AuthorImg.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:self.AuthorImg];
     
     //糗事作者
     self.textAuthor = [[UILabel alloc] initWithFrame:CGRectMake(45, 5, 200, 30)];
     self.textAuthor.text = @"匿名";
-    self.textAuthor.font = [colyCell DefaultFont];
+    self.textAuthor.font = defaultFont;
     self.textAuthor.textColor = [UIColor brownColor];
     self.textAuthor.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:self.textAuthor];
@@ -43,7 +43,7 @@
     //糗事内容
     self.textContent = [[UILabel alloc] init];
     [self.textContent setFrame:CGRectMake(20, 28, 280, 220)];
-    [self.textContent setFont:[colyCell DefaultFont]];
+    [self.textContent setFont:defaultFont];
     [self.textContent setNumberOfLines:0];
     [self.textContent setLineBreakMode:NSLineBreakByTruncatingTail];
     self.textContent.backgroundColor = [UIColor clearColor];
@@ -53,7 +53,7 @@
     //糗事tag
     self.textTag = [[UILabel alloc] init];
     self.textTag.text = @"摄影";
-    self.textTag.font = [colyCell DefaultFont];
+    self.textTag.font = defaultFont;
     self.textTag.textColor = [UIColor brownColor];
     self.textTag.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:self.textTag];
@@ -126,7 +126,7 @@
   
   CGSize size = [colyCell getLabelSizeFromContent:self.textContent.text];
   
-  [self.textContent setFrame:CGRectMake(20, 40, [colyCell ContentMaxSize].width, size.height)];
+  [self.textContent setFrame:CGRectMake(20, 40, maxSize.width, size.height)];
   
   [self setOtherElements:self.textContent.frame.size];
   
@@ -152,7 +152,7 @@
 
 + (CGSize)getLabelSizeFromContent:(NSString *)content
 {
-  return [content sizeWithFont:[colyCell DefaultFont] constrainedToSize:[colyCell ContentMaxSize] lineBreakMode:NSLineBreakByTruncatingTail];
+  return [content sizeWithFont:defaultFont constrainedToSize:maxSize lineBreakMode:NSLineBreakByTruncatingTail];
 }
 
 + (CGFloat)getCellHeight:(NSString *)content
@@ -160,15 +160,6 @@
   return [colyCell getLabelSizeFromContent:content].height+110;
 }
 
-+ (UIFont *)DefaultFont
-{
-  return [UIFont fontWithName:@"Arial" size:14];
-}
-
-+(CGSize)ContentMaxSize
-{
-  return CGSizeMake(280, 220);
-}
 
 
 @end
