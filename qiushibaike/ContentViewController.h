@@ -13,7 +13,8 @@
 //糗事列表
 @property (retain, nonatomic) NSMutableArray *list;
 
-@property (nonatomic,assign) BOOL loading;
+//当前糗事的页数
+@property (nonatomic,assign) int page;
 
 //获取糗事列表
 - (void)getResult;

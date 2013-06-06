@@ -24,7 +24,7 @@
 
 @synthesize table;
 @synthesize list;
-@synthesize loading;
+@synthesize page;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,6 +44,9 @@
   
   //初始化列表和高度数组
   self.list = [NSMutableArray new];
+  
+  //初始化页数
+  self.page = 1;
   
   //清除默认样式
   self.view.backgroundColor = [UIColor clearColor];
@@ -85,7 +88,7 @@
 - (void)getResult
 {
    
-  NSURL *url = [NSURL URLWithString:DayURLString(5, 1)];
+  NSURL *url = [NSURL URLWithString:DayURLString(1000, self.page)];
   
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
   
@@ -93,13 +96,12 @@
   
   AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSURLResponse *response, id JSON)
   {
+//    NSLog(@"第%d次：%@\n\n\n\n\n", self.page,JSON);
     if ([JSON objectForKey:@"items"])
     {
-    [self setData:[JSON objectForKey:@"items"]];
+      [self setData:[JSON objectForKey:@"items"]];
     }
-    
-//    NSLog(@"%@", JSON);
-    
+
     [self.table reloadData];
     [self.table.pullToRefreshView stopAnimating];
 
@@ -121,6 +123,7 @@
     QiushiObject *qs = [[QiushiObject alloc] initWithDictionary:qiushi];
     [self.list addObject:qs];
   }
+  self.page++;
 }
 
 #pragma tableView delegate methods

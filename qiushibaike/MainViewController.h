@@ -26,4 +26,10 @@
 //内容视图
 @property(retain, nonatomic) ContentViewController *contentController;
 
+//帮助视图背景
+@property(retain, nonatomic) UIView *back_helpView;
+
+//帮助视图
+@property(retain, nonatomic) UIImageView *helpImageView;
+
 @end

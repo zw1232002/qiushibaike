@@ -11,10 +11,17 @@
 
 @interface MainViewController ()
 
+//显示帮助视图
+- (void)showHelp;
+
+//帮助视图是否显示
+@property(assign, nonatomic) BOOL isShowHelp;
+
 @end
 
 @implementation MainViewController
 @synthesize loginButton,logo,regButton,helpButton,contentController;
+@synthesize isShowHelp;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,6 +46,28 @@
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
+
+- (void)showHelp
+{
+  if (self.isShowHelp)
+  {
+    [UIView animateWithDuration:0.8f animations:^{
+      self.isShowHelp = NO;
+      [self.back_helpView setAlpha:0.f];
+      [self.helpImageView setFrame:CGRectMake(0, 720-44-229, 320, 209)];
+    }];
+    
+  }else
+  {
+    [UIView animateWithDuration:0.8f animations:^{
+      self.isShowHelp = YES;
+      [self.back_helpView setAlpha:0.85f];
+      [self.helpImageView setFrame:CGRectMake(0, 480-44-229, 320, 209)];
+    }];
+   
+  }
+}
+
 
 /*
  * 初始化界面，创建所有的图形元素
@@ -65,23 +94,28 @@
 //  [self.contentController.view setFrame:CGRectMake(0, 44, kDeviceWidth , kDeviceHeight - 44*2)];
   [self.view addSubview:self.contentController.view];
   
+  self.isShowHelp = NO;
+  
   //点击帮助按钮出来的视图
-  UIView *back_helpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kDeviceWidth, kDeviceHeight)];
-  [back_helpView setBackgroundColor:[UIColor clearColor]];
-  [back_helpView setAlpha:0.f];
-  [self.view addSubview:back_helpView];
+  self.back_helpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kDeviceWidth, kDeviceHeight)];
+  [self.back_helpView setBackgroundColor:[UIColor blackColor]];
+  [self.back_helpView setAlpha:0.f];
+  [self.view addSubview:self.back_helpView];
   
   //帮助图像
   UIImage *helpImage = [UIImage imageNamed:@"block_help.png"];
-  UIImageView *helpImageView = [[UIImageView alloc] initWithImage:helpImage];
-  helpImageView.frame = CGRectMake(0, 720-44-229, 320, 209);
-  [self.view addSubview:helpImageView];
+  self.helpImageView = [[UIImageView alloc] initWithImage:helpImage];
+  self.helpImageView.frame = CGRectMake(0, 720-44-229, 320, 209);
+  [self.view addSubview:self.helpImageView];
+  //开启imageView的interaction属性，以便关闭按钮的事件能够起作用
+  [self.helpImageView setUserInteractionEnabled:YES];
   
   //关闭按钮
   UIButton *closeButton = [UIButton new];
-  [closeButton setBackgroundImage:[UIImage imageNamed:@"icon_close.png"] forState:UIControlStateNormal];
   closeButton.frame = CGRectMake(280, 12, 24, 24);
-  [helpImageView addSubview:closeButton];
+  [closeButton setBackgroundImage:[UIImage imageNamed:@"icon_close.png"] forState:UIControlStateNormal];
+  [closeButton addTarget:self action:@selector(showHelp) forControlEvents:UIControlEventTouchUpInside];
+  [self.helpImageView addSubview:closeButton];
   
   
   //底部图片
@@ -106,6 +140,7 @@
   self.helpButton.frame = CGRectMake(kDeviceWidth-50, 480 -44 -20 +5, 42, 32);
   [self.helpButton setBackgroundImage:[UIImage imageNamed:@"icon_help.png"] forState:UIControlStateNormal];
   [self.helpButton setBackgroundImage:[UIImage imageNamed:@"icon_help_active.png"] forState:UIControlStateHighlighted];
+  [self.helpButton addTarget:self action:@selector(showHelp) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.helpButton];
 }
 
