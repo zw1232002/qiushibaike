@@ -11,12 +11,11 @@
 #import "AFJSONRequestOperation.h"
 #import "QiushiObject.h"
 #import "UIImageView+AFNetworking.h"
-#import "UIScrollView+SVPullToRefresh.h"
-#import "UIScrollView+SVInfiniteScrolling.h"
+#import "PullingRefreshTableView.h"
 
-@interface ContentViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface ContentViewController ()<UITableViewDataSource, UITableViewDelegate,PullingRefreshTableViewDelegate>
 
-@property (retain, nonatomic) UITableView *table;
+@property (retain, nonatomic) PullingRefreshTableView *table;
 
 @end
 
@@ -50,8 +49,9 @@
   
   //清除默认样式
   self.view.backgroundColor = [UIColor clearColor];
+
   
-  self.table = [[UITableView alloc] initWithFrame:self.view.bounds];
+  self.table = [[PullingRefreshTableView alloc] initWithFrame:self.view.bounds pullingDelegate:self];
   
   //清除默认样式
   self.table.backgroundColor = [UIColor clearColor];
@@ -61,21 +61,16 @@
   
   [self.view addSubview:self.table];
   
-  __block ContentViewController *selfVari = self;
-  
-  [self.table addPullToRefreshWithActionHandler:^{
-    [selfVari performSelector:@selector(getResult) withObject:nil afterDelay:1.f];
-  }];
-  
-  [self.table addInfiniteScrollingWithActionHandler:^{
-    [selfVari performSelector:@selector(getResult) withObject:nil afterDelay:1.0f];
-  }];
-  
 }
+
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  [self.table triggerPullToRefresh];
+  if (self.page ==1)
+  {
+    [self.table launchRefreshing];
+  }
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,8 +82,11 @@
 
 - (void)getResult
 {
-   
-  NSURL *url = [NSURL URLWithString:DayURLString(1000, self.page)];
+  
+//  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"fuck" message:[NSString stringWithFormat:@"这是第%d次请求",self.page] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:@"OK个屁", nil];
+//  [alert show];
+  
+  NSURL *url = [NSURL URLWithString:WeakURlString(500, self.page)];
   
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
   
@@ -103,7 +101,8 @@
     }
 
     [self.table reloadData];
-    [self.table.pullToRefreshView stopAnimating];
+    [self.table tableViewDidFinishedLoading];
+//    [self.table.pullToRefreshView stopAnimating];
 
   } failure:^(NSURLRequest *request, NSURLResponse *response, NSError *error, id jj)
   {
@@ -183,4 +182,28 @@
   return [colyCell getCellHeight:qiushi.content];
 }
 
+
+#pragma PullRefreshTableViewDelegate mark
+- (void)pullingTableViewDidStartRefreshing:(PullingRefreshTableView *)tableView
+{
+  [self performSelector:@selector(getResult) withObject:nil afterDelay:1.f];
+}
+
+- (void)pullingTableViewDidStartLoading:(PullingRefreshTableView *)tableView
+{
+  [self performSelector:@selector(getResult) withObject:nil afterDelay:1.f];
+}
+
+
+#pragma mark scroll
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+  [self.table tableViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+  [self.table tableViewDidEndDragging:scrollView];
+}
 @end
