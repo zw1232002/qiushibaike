@@ -11,11 +11,11 @@
 #import "AFJSONRequestOperation.h"
 #import "QiushiObject.h"
 #import "UIImageView+AFNetworking.h"
-#import "PullingRefreshTableView.h"
+#import "PullTableView.h"
 
-@interface ContentViewController ()<UITableViewDataSource, UITableViewDelegate,PullingRefreshTableViewDelegate>
+@interface ContentViewController ()<UITableViewDataSource, UITableViewDelegate, PullTableViewDelegate>
 
-@property (retain, nonatomic) PullingRefreshTableView *table;
+@property (retain, nonatomic) PullTableView *table;
 
 @end
 
@@ -50,8 +50,9 @@
   //清除默认样式
   self.view.backgroundColor = [UIColor clearColor];
 
+  self.table = [[PullTableView alloc] initWithFrame:self.view.bounds];
   
-  self.table = [[PullingRefreshTableView alloc] initWithFrame:self.view.bounds pullingDelegate:self];
+  self.table.pullBackgroundColor = [UIColor clearColor];
   
   //清除默认样式
   self.table.backgroundColor = [UIColor clearColor];
@@ -63,13 +64,17 @@
   
 }
 
-
+- (void)viewDidUnload
+{
+  self.table = nil;
+  self.list = nil;
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  if (self.page ==1)
-  {
-    [self.table launchRefreshing];
+  if(!self.table.pullTableIsRefreshing) {
+    self.table.pullTableIsRefreshing = YES;
+    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.f];
   }
 }
 
@@ -86,7 +91,7 @@
 //  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"fuck" message:[NSString stringWithFormat:@"这是第%d次请求",self.page] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:@"OK个屁", nil];
 //  [alert show];
   
-  NSURL *url = [NSURL URLWithString:WeakURlString(500, self.page)];
+  NSURL *url = [NSURL URLWithString:DayURLString(500, self.page)];
   
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
   
@@ -101,8 +106,6 @@
     }
 
     [self.table reloadData];
-    [self.table tableViewDidFinishedLoading];
-//    [self.table.pullToRefreshView stopAnimating];
 
   } failure:^(NSURLRequest *request, NSURLResponse *response, NSError *error, id jj)
   {
@@ -183,27 +186,33 @@
 }
 
 
-#pragma PullRefreshTableViewDelegate mark
-- (void)pullingTableViewDidStartRefreshing:(PullingRefreshTableView *)tableView
+#pragma mark - Refresh and load more methods
+
+- (void) refreshTable
 {
-  [self performSelector:@selector(getResult) withObject:nil afterDelay:1.f];
+  [self getResult];
+  self.table.pullLastRefreshDate = [NSDate date];
+  self.table.pullTableIsRefreshing = NO;
 }
 
-- (void)pullingTableViewDidStartLoading:(PullingRefreshTableView *)tableView
+- (void) loadMoreDataToTable
 {
-  [self performSelector:@selector(getResult) withObject:nil afterDelay:1.f];
+  [self getResult];
+  self.table.pullTableIsLoadingMore = NO;
 }
 
 
-#pragma mark scroll
+#pragma mark - PullTableViewDelegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
 {
-  [self.table tableViewDidScroll:scrollView];
+  
+  [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView
 {
-  [self.table tableViewDidEndDragging:scrollView];
+  [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:1.0f];
 }
+
 @end
