@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CEFDA31E174C9B8300D2C5CA"
-               BuildableName = "qiushibaike.app"
+               BuildableName = "&#31959;&#20107;&#30334;&#31185;.app"
                BlueprintName = "qiushibaike"
                ReferencedContainer = "container:qiushibaike.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEFDA31E174C9B8300D2C5CA"
-            BuildableName = "qiushibaike.app"
+            BuildableName = "&#31959;&#20107;&#30334;&#31185;.app"
             BlueprintName = "qiushibaike"
             ReferencedContainer = "container:qiushibaike.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEFDA31E174C9B8300D2C5CA"
-            BuildableName = "qiushibaike.app"
+            BuildableName = "&#31959;&#20107;&#30334;&#31185;.app"
             BlueprintName = "qiushibaike"
             ReferencedContainer = "container:qiushibaike.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEFDA31E174C9B8300D2C5CA"
-            BuildableName = "qiushibaike.app"
+            BuildableName = "&#31959;&#20107;&#30334;&#31185;.app"
             BlueprintName = "qiushibaike"
             ReferencedContainer = "container:qiushibaike.xcodeproj">
          </BuildableReference>

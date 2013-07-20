@@ -52,6 +52,8 @@
 
   self.table = [[PullTableView alloc] initWithFrame:self.view.bounds];
   
+  self.table.pullDelegate = self;
+  
   self.table.pullBackgroundColor = [UIColor clearColor];
   
   //清除默认样式
